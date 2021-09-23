@@ -1,14 +1,16 @@
 #' Uses VBA code to save a copy of an xlsx file to the accessible ODS format, retaining all sheets and formatting.
+#'
+#' Files converted can be via a relative (from working directory) or absolute (full) file path. In either case, the output ODS file will be returned in the same folder as the XLSX file.
 #' @export
-#' @param xlsx_path
-#' @param local_file
-#' @name convert_ods
+#' @param xlsx_path path to xlsx file; can be either a relative or absolute file path
+#' @param relative_file_path boolean indicating if location of xlsx file is relative or absolute. Defaults to TRUE
+#' @name convert_to_ods
 #' @title Save a copy of an xlsx file as an ods file
 #'
-convert_ods <- function(xlsx_path, local_file = TRUE){
+convert_to_ods <- function(xlsx_path, relative_file_path = TRUE){
 
   ##Select whether using a local or absolute file path
-  if(local_file){
+  if(relative_file_path){
   ##Join together wd and file name
     nice_wd <- paste0(gsub("/", "\\", getwd(), fixed = TRUE), "\\")
 
@@ -17,7 +19,10 @@ convert_ods <- function(xlsx_path, local_file = TRUE){
     xlsx_all <- paste0('"', nice_wd, xlsx_path, '"')
 
     ods_all <- paste0('"', nice_wd, ods_path, '"')
+
   } else{
+    xlsx_path <- gsub("/", "\\", xlsx_path, fixed = TRUE)
+
     ods_path <- gsub("xlsx", "ods", xlsx_path)
 
     xlsx_all <- paste0('"', xlsx_path, '"')
@@ -26,16 +31,20 @@ convert_ods <- function(xlsx_path, local_file = TRUE){
 
   }
 
+  ##Get path of VBS script inside package
+  vbs_loc <- paste0('"',
+                    system.file("vbs", package = "odsconvertr"),
+                    '/save.vbs"')
+
 
   #Run VBS script passing it the file paths
 
   system_command <- paste("WScript",
-                          '"save.vbs"',
+                          vbs_loc,
                           xlsx_all,
                           ods_all,
                           sep = " ")
   system(command = system_command)
 
 }
-
 
