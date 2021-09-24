@@ -9,6 +9,9 @@
 #'
 convert_to_ods <- function(xlsx_path, relative_file_path = TRUE){
 
+  ##Remove single backslashes from xlsx path
+  xlsx_path <- gsub("/", "\\", xlsx_path, fixed = TRUE)
+
   ##Select whether using a local or absolute file path
   if(relative_file_path){
   ##Join together wd and file name
@@ -21,7 +24,6 @@ convert_to_ods <- function(xlsx_path, relative_file_path = TRUE){
     ods_all <- paste0('"', nice_wd, ods_path, '"')
 
   } else{
-    xlsx_path <- gsub("/", "\\", xlsx_path, fixed = TRUE)
 
     ods_path <- gsub("xlsx", "ods", xlsx_path)
 
