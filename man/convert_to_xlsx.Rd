@@ -2,10 +2,9 @@
 % Please edit documentation in R/save_file.R
 \name{convert_to_xlsx}
 \alias{convert_to_xlsx}
-\alias{convert_to_ods}
 \title{Save a copy of an ods file as an xlsx file}
 \usage{
-convert_to_ods(xlsx_path, relative_file_path = TRUE)
+convert_to_xlsx(xlsx_path, relative_file_path = TRUE)
 }
 \arguments{
 \item{relative_file_path}{boolean indicating if location of xlsx file is relative or absolute. Defaults to TRUE}

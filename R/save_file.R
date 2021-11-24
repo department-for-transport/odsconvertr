@@ -59,7 +59,7 @@ convert_to_ods <- function(xlsx_path, relative_file_path = TRUE){
 #' @name convert_to_xlsx
 #' @title Save a copy of an ods file as an xlsx file
 #'
-convert_to_ods <- function(xlsx_path, relative_file_path = TRUE){
+convert_to_xlsx <- function(xlsx_path, relative_file_path = TRUE){
 
   ##Remove single backslashes from xlsx path
   xlsx_path <- gsub("/", "\\", xlsx_path, fixed = TRUE)
