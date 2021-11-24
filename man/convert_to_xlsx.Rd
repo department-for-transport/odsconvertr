@@ -7,9 +7,9 @@
 convert_to_xlsx(xlsx_path, relative_file_path = TRUE)
 }
 \arguments{
-\item{relative_file_path}{boolean indicating if location of xlsx file is relative or absolute. Defaults to TRUE}
+\item{xlsx_path}{path to ods file; can be either a relative or absolute file path}
 
-\item{ods_path}{path to ods file; can be either a relative or absolute file path}
+\item{relative_file_path}{boolean indicating if location of xlsx file is relative or absolute. Defaults to TRUE}
 }
 \description{
 Uses VBA code to save a copy of an ods file to the easy to use xlsx format, retaining all sheets and formatting.

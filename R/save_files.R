@@ -54,7 +54,7 @@ convert_to_ods <- function(xlsx_path, relative_file_path = TRUE){
 #'
 #' Files converted can be via a relative (from working directory) or absolute (full) file path. In either case, the output ODS file will be returned in the same folder as the XLSX file.
 #' @export
-#' @param ods_path path to ods file; can be either a relative or absolute file path
+#' @param xlsx_path path to ods file; can be either a relative or absolute file path
 #' @param relative_file_path boolean indicating if location of xlsx file is relative or absolute. Defaults to TRUE
 #' @name convert_to_xlsx
 #' @title Save a copy of an ods file as an xlsx file
