@@ -11,4 +11,3 @@ local = true
 call oBook.SaveAs(WScript.Arguments(1), 60)
 oBook.Close False
 oExcel.Quit
-WScript.Echo "Done"

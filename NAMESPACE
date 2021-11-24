@@ -2,3 +2,4 @@
 
 export(convert_to_ods)
 export(convert_to_xlsx)
+export(evaluate_formula)
