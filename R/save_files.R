@@ -9,24 +9,12 @@
 convert_to_ods <- function(path){
 
   ##Normalise path to an absolute one with backslashes and surrounding quotation marks
-  path <- paste('"', normalizePath(path), '"')
+  path <- paste0('"', normalizePath(path), '"')
 
   ods_path <- gsub("xlsx", "ods", path)
 
-
-  ##Get path of VBS script inside package
-  vbs_loc <- paste0('"',
-                    system.file("vbs", package = "odsconvertr"),
-                    '/save.vbs"')
-
-
-  #Run VBS script passing it the file paths
-  system_command <- paste("WScript",
-                          vbs_loc,
-                          path,
-                          ods_path,
-                          sep = " ")
-  system(command = system_command)
+  ##Execute specified VBS script to save ods files
+  vbs_execute("save.vbs", path, ods_path)
 
 }
 
@@ -41,24 +29,12 @@ convert_to_ods <- function(path){
 convert_to_xlsx <- function(path){
 
   ##Normalise path to an absolute one with backslashes and surrounding quotation marks
-  path <- paste('"', normalizePath(path), '"')
+  path <- paste0('"', normalizePath(path), '"')
 
   xlsx_path <- gsub("ods", "xlsx", path)
 
-  ##Get path of VBS script inside package
-  vbs_loc <- paste0('"',
-                    system.file("vbs", package = "odsconvertr"),
-                    '/save_xlsx.vbs"')
-
-
-  #Run VBS script passing it the file paths
-
-  system_command <- paste("WScript",
-                          vbs_loc,
-                          path,
-                          xlsx_path,
-                          sep = " ")
-  system(command = system_command)
+  ##Execute specified VBS script to save xlsx files
+  vbs_execute("save_xlsx.vbs", path, xlsx_path)
 
 }
 
