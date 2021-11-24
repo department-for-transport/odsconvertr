@@ -2,36 +2,17 @@
 #'
 #' Files converted can be via a relative (from working directory) or absolute (full) file path. In either case, the output ODS file will be returned in the same folder as the XLSX file.
 #' @export
-#' @param xlsx_path path to xlsx file; can be either a relative or absolute file path
-#' @param relative_file_path boolean indicating if location of xlsx file is relative or absolute. Defaults to TRUE
+#' @param path path to xlsx file; can be either a relative or absolute file path
 #' @name convert_to_ods
 #' @title Save a copy of an xlsx file as an ods file
 #'
-convert_to_ods <- function(xlsx_path, relative_file_path = TRUE){
+convert_to_ods <- function(path){
 
-  ##Remove single backslashes from xlsx path
-  xlsx_path <- gsub("/", "\\", xlsx_path, fixed = TRUE)
+  ##Normalise path to an absolute one with backslashes and surrounding quotation marks
+  path <- paste('"', normalizePath(path), '"')
 
-  ##Select whether using a local or absolute file path
-  if(relative_file_path){
-  ##Join together wd and file name
-    nice_wd <- paste0(gsub("/", "\\", getwd(), fixed = TRUE), "\\")
+  ods_path <- gsub("xlsx", "ods", path)
 
-    ods_path <- gsub("xlsx", "ods", xlsx_path)
-
-    xlsx_all <- paste0('"', nice_wd, xlsx_path, '"')
-
-    ods_all <- paste0('"', nice_wd, ods_path, '"')
-
-  } else{
-
-    ods_path <- gsub("xlsx", "ods", xlsx_path)
-
-    xlsx_all <- paste0('"', xlsx_path, '"')
-
-    ods_all <- paste0('"', ods_path, '"')
-
-  }
 
   ##Get path of VBS script inside package
   vbs_loc <- paste0('"',
@@ -40,11 +21,10 @@ convert_to_ods <- function(xlsx_path, relative_file_path = TRUE){
 
 
   #Run VBS script passing it the file paths
-
   system_command <- paste("WScript",
                           vbs_loc,
-                          xlsx_all,
-                          ods_all,
+                          path,
+                          ods_path,
                           sep = " ")
   system(command = system_command)
 
@@ -54,36 +34,16 @@ convert_to_ods <- function(xlsx_path, relative_file_path = TRUE){
 #'
 #' Files converted can be via a relative (from working directory) or absolute (full) file path. In either case, the output ODS file will be returned in the same folder as the XLSX file.
 #' @export
-#' @param xlsx_path path to ods file; can be either a relative or absolute file path
-#' @param relative_file_path boolean indicating if location of xlsx file is relative or absolute. Defaults to TRUE
+#' @param path path to ods file; can be either a relative or absolute file path
 #' @name convert_to_xlsx
 #' @title Save a copy of an ods file as an xlsx file
 #'
-convert_to_xlsx <- function(xlsx_path, relative_file_path = TRUE){
+convert_to_xlsx <- function(path){
 
-  ##Remove single backslashes from xlsx path
-  xlsx_path <- gsub("/", "\\", xlsx_path, fixed = TRUE)
+  ##Normalise path to an absolute one with backslashes and surrounding quotation marks
+  path <- paste('"', normalizePath(path), '"')
 
-  ##Select whether using a local or absolute file path
-  if(relative_file_path){
-    ##Join together wd and file name
-    nice_wd <- paste0(gsub("/", "\\", getwd(), fixed = TRUE), "\\")
-
-    ods_path <- gsub("ods", "xlsx", xlsx_path)
-
-    xlsx_all <- paste0('"', nice_wd, xlsx_path, '"')
-
-    ods_all <- paste0('"', nice_wd, ods_path, '"')
-
-  } else{
-
-    ods_path <- gsub("ods", "xlsx", xlsx_path)
-
-    xlsx_all <- paste0('"', xlsx_path, '"')
-
-    ods_all <- paste0('"', ods_path, '"')
-
-  }
+  xlsx_path <- gsub("ods", "xlsx", path)
 
   ##Get path of VBS script inside package
   vbs_loc <- paste0('"',
@@ -95,8 +55,8 @@ convert_to_xlsx <- function(xlsx_path, relative_file_path = TRUE){
 
   system_command <- paste("WScript",
                           vbs_loc,
-                          xlsx_all,
-                          ods_all,
+                          path,
+                          xlsx_path,
                           sep = " ")
   system(command = system_command)
 
