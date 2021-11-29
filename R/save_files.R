@@ -11,7 +11,7 @@ convert_to_ods <- function(path){
   ##Normalise path to an absolute one with backslashes and surrounding quotation marks
   path <- paste0('"', normalizePath(path), '"')
 
-  ods_path <- gsub("xlsx", "ods", path)
+  ods_path <- gsub("[.]xlsx", "[.]ods", path)
 
   ##Execute specified VBS script to save ods files
   vbs_execute("save.vbs", path, ods_path)
@@ -31,7 +31,7 @@ convert_to_xlsx <- function(path){
   ##Normalise path to an absolute one with backslashes and surrounding quotation marks
   path <- paste0('"', normalizePath(path), '"')
 
-  xlsx_path <- gsub("ods", "xlsx", path)
+  xlsx_path <- gsub("[.]ods", "[.]xlsx", path)
 
   ##Execute specified VBS script to save xlsx files
   vbs_execute("save_xlsx.vbs", path, xlsx_path)

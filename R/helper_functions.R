@@ -3,7 +3,7 @@
 #' Formats the name of a VBS file to be used
 #' @param vbs_file Name of a vbs script file saved as part of the package
 #' @name vbs_file_path
-#' @title Convert an R file path to one that can be used by VBS
+#' @title Formats the name of a VBS script file into the filepath within the package
 
 vbs_file_path <- function(vbs_file){
   ##Get path of VBS script inside package
