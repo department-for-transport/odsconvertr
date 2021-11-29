@@ -1,7 +1,7 @@
-Package: vbstools
+Package: odsconvertr
 Type: Package
 Title: Package of VBS helper functions to facilitate simple Excel processes in R
-Version: 0.1.1
+Version: 0.2.2
 Author: Francesca Bryden 
 Maintainer: Francesca Bryden <francesca.bryden@dft.gov.uk>
 Description: Package of VBS helper functions to facilitate simple Excel processes in R.

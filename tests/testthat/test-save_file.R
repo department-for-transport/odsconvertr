@@ -12,6 +12,12 @@ test_that("File saves as ODS", {
 
 })
 
+test_that("Returns error when file doesnt exist", {
+
+  expect_error(convert_to_ods("abc.xlsx"))
+
+})
+
 
 test_that("File saves as XLSX", {
   ##Make note of files at start and at end
@@ -26,8 +32,14 @@ test_that("File saves as XLSX", {
 
 })
 
+test_that("Returns error when file doesnt exist", {
+
+  expect_error(convert_to_xlsx("abc.ods"))
+
+})
+
 
 #Remove test file
-unlink("testfiles/test_file.ods")
-unlink("testfiles/test_file1.xlsx")
+ unlink("testfiles/test_file.ods")
+ unlink("testfiles/test_file1.xlsx")
 

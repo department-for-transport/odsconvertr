@@ -2,7 +2,7 @@
 % Please edit documentation in R/helper_functions.R
 \name{vbs_file_path}
 \alias{vbs_file_path}
-\title{Convert an R file path to one that can be used by VBS}
+\title{Formats the name of a VBS script file into the filepath within the package}
 \usage{
 vbs_file_path(vbs_file)
 }

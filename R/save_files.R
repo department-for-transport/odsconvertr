@@ -8,13 +8,30 @@
 #'
 convert_to_ods <- function(path){
 
-  ##Normalise path to an absolute one with backslashes and surrounding quotation marks
-  path <- paste0('"', normalizePath(path), '"')
+  ##Stop if file is not found
+  if(file.exists(path) == FALSE){
+    stop("File not found")
+  }
 
-  ods_path <- gsub("[.]xlsx", "[.]ods", path)
+  #Stop if file is not an xlsx
+  if(grepl(".xlsx", path, fixed = TRUE) == FALSE){
+    stop("File is not an xlsx file")
+  }
 
-  ##Execute specified VBS script to save ods files
-  vbs_execute("save.vbs", path, ods_path)
+  ##Convert path to absolute one
+  xlsx_all <-  paste0('"',normalizePath(path),  '"')
+
+  ods_all <-  gsub(".xlsx", ".ods", xlsx_all, fixed = TRUE)
+
+
+  ##Get path of VBS script inside package
+  vbs_loc <- vbs_file_path('save.vbs')
+
+
+  #Run VBS script passing it the file paths
+  vbs_execute("save.vbs",
+              xlsx_all,
+              ods_all)
 
 }
 
@@ -28,13 +45,28 @@ convert_to_ods <- function(path){
 #'
 convert_to_xlsx <- function(path){
 
-  ##Normalise path to an absolute one with backslashes and surrounding quotation marks
-  path <- paste0('"', normalizePath(path), '"')
+  ##Stop if file is not found
+  if(file.exists(path) == FALSE){
+    stop("File not found")
+  }
 
-  xlsx_path <- gsub("[.]ods", "[.]xlsx", path)
+  #Stop if file is not an xlsx
+  if(grepl(".ods", path, fixed = TRUE) == FALSE){
+    stop("File is not an ods file")
+  }
+  ##Convert path to absolute one
+  ods_all <- paste0('"',normalizePath(path),  '"')
 
-  ##Execute specified VBS script to save xlsx files
-  vbs_execute("save_xlsx.vbs", path, xlsx_path)
+  xlsx_all <-  gsub(".ods", ".xlsx", ods_all, fixed = TRUE)
+
+
+  ##Get path of VBS script inside package
+  vbs_loc <- vbs_file_path('save.vbs')
+
+
+  #Run VBS script passing it the file paths
+  vbs_execute("save_xlsx.vbs",
+              ods_all,
+              xlsx_all)
 
 }
-
