@@ -7,27 +7,39 @@ test_that("File saves as ODS", {
 
   end_all_files <- list.files("testfiles")
 
-  expect_equal(sum(grepl("ods", start_all_files)), 0)
-  expect_equal(sum(grepl("ods", end_all_files)), 1)
+  expect_equal(sum(grepl("test_file.ods", start_all_files, fixed = TRUE)), 0)
+  expect_equal(sum(grepl("test_file.ods", end_all_files, fixed = TRUE)), 1)
 
 })
 
-#Remove test file
-unlink("testfiles/test_file.ods")
+test_that("Returns error when file doesnt exist", {
+
+  expect_error(convert_to_ods("abc.xlsx"))
+
+})
 
 
-test_that("Absolute filepath argument works", {
+test_that("File saves as XLSX", {
   ##Make note of files at start and at end
-  start_all_files <- list.files(system.file("testfiles", package = "odsconvertr"))
+  start_all_files <- list.files("testfiles")
 
-  convert_to_ods(paste0(system.file("testfiles", package = "odsconvertr"), "/test_file.xlsx"), relative_file_path = FALSE)
+  convert_to_xlsx("testfiles/test_file1.ods")
 
-  end_all_files <- list.files(system.file("testfiles", package = "odsconvertr"))
+  end_all_files <- list.files("testfiles")
 
-  expect_equal(sum(grepl("ods", start_all_files)), 0)
-  expect_equal(sum(grepl("ods", end_all_files)), 1)
+  expect_equal(sum(grepl("test_file1.xlsx", start_all_files, fixed = TRUE)), 0)
+  expect_equal(sum(grepl("test_file1.xlsx", end_all_files, fixed = TRUE)), 1)
 
 })
 
+test_that("Returns error when file doesnt exist", {
+
+  expect_error(convert_to_xlsx("abc.ods"))
+
+})
+
+
 #Remove test file
-unlink(paste0(system.file("testfiles", package = "odsconvertr"), "/test_file.ods"))
+ unlink("testfiles/test_file.ods")
+ unlink("testfiles/test_file1.xlsx")
+

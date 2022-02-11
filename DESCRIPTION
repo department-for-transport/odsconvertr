@@ -1,10 +1,10 @@
 Package: odsconvertr
 Type: Package
-Title: Convert between XLSX and ODS file formats Within R
-Version: 0.1.1
+Title: Package of VBS helper functions to facilitate simple Excel processes in R
+Version: 0.2.2
 Author: Francesca Bryden 
 Maintainer: Francesca Bryden <francesca.bryden@dft.gov.uk>
-Description: Package which uses simple VBS scripts to convert between xlsx and ods formats.
+Description: Package of VBS helper functions to facilitate simple Excel processes in R.
 License: GPL
 Encoding: UTF-8
 LazyData: true
