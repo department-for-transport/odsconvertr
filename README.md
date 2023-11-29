@@ -10,12 +10,7 @@ This package uses a Visual Basic script (VBS) to save a copy of an existing XLSX
 You can install odsconvertR with:
 
     install.packages("devtools")
-    devtools::install_github("departmentfortransport/odsconvertr")
-
-or
-
-    install.packages("devtools")
-    devtools::install_git("git://github.com/departmentfortransport/odsconvertr.git")
+    devtools::install_github("department-for-transport-public/odsconvertr")
 
 ## Usage
 
